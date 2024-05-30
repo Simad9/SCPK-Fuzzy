@@ -1,0 +1,39 @@
+[System]
+Name='fuzzy'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=4
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Permintaan'
+Range=[1500 6000]
+NumMFs=2
+MF1='TURUN':'trimf',[1500 1500 6000]
+MF2='NAIK':'trimf',[1500 6000 6000]
+
+[Input2]
+Name='Persedian'
+Range=[10 80]
+NumMFs=2
+MF1='SEDIKIT':'trimf',[10 10 80]
+MF2='BANYAK':'trimf',[10 80 80]
+
+[Output1]
+Name='JmlPaket'
+Range=[2500 7000]
+NumMFs=2
+MF1='BERKURANG':'trimf',[2500 2500 7000]
+MF2='BERTAMBAH':'trimf',[2500 7000 7000]
+
+[Rules]
+1 2, 1 (1) : 1
+1 1, 1 (1) : 1
+2 2, 2 (1) : 1
+2 1, 2 (1) : 1
