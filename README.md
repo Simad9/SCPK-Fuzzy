@@ -9,8 +9,8 @@ Dosen = Bu Herlina
 
 ## Berkas
 - [Dokumen Ngarangnya - gdocx](https://docs.google.com/document/d/1cnnkdGQRakPBQeuRO5NyGtelu4HCbjjolgJ2gIJWp-M/edit?usp=sharing)
-- [PPT Fuzzy - slide]() **Belum ada linknya**
-- [Perhitangan Excel - spreadsheet]() **Belum ada linknya**
+- [PPT Fuzzy - slide](https://docs.google.com/presentation/d/1_cgjnTPnDrj5ftmpXmg_jVIlUtyLjUxmof4TOFkp0ak/edit?usp=sharing)
+- [Perhitangan Excel - spreadsheet](https://docs.google.com/spreadsheets/d/1jWI3bCIQqzfuhHWP5d4ZM9HP1y8XvYwTGuFAITpXlX0/edit?usp=sharing)
 - [Laporan Fuzzy] --> Ini sepertinya file sih
 - Matlab --> ada di repo ini
 
