@@ -22,7 +22,7 @@ function varargout = fuzzy_gui(varargin)
 
 % Edit the above text to modify the response to help fuzzy_gui
 
-% Last Modified by GUIDE v2.5 31-May-2024 00:40:18
+% Last Modified by GUIDE v2.5 31-May-2024 09:40:24
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -147,11 +147,70 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-permin = str2num(get(handles.permintaan, 'string'));
-persed = str2num(get(handles.persedian, 'string'));
+
+permin = str2double(get(handles.permintaan, 'string'));
+persed = str2double(get(handles.persedian, 'string'));
 
 fis = readfis('fuzzy.fis');
 
+% Debug: cek FIS apakah benar
+if isempty(fis)
+  error('FIS file not found or could not be loaded.');
+end
+
+% Plot fungsi untuk Permintaan
+axes(handles.axes1);
+plotmf(fis, 'input', 1);
+title('Permintaan');
+xlabel('Permintaan');
+ylabel('Membership Value');
+hold on;
+% Tambah vertikal untuk nilai
+stem(permin, 1, 'r');
+hold off;
+
+% Plot fungsi untuk Persediaan
+axes(handles.axes2);
+plotmf(fis, 'input', 2);
+title('Persedian');
+xlabel('Persedian');
+ylabel('Membership Value');
+hold on;
+% Tambah vertikal untuk nilai
+stem(persed, 1, 'r');
+hold off;
+
+% Eval
 result = evalfis([permin, persed], fis);
 
-set(handles.jmlPaket, 'string', result);
+% Plot fungsi untuk Hasil
+axes(handles.axes3);
+plotmf(fis, 'output', 1);
+title('Jumlah Paket');
+xlabel('Jumlah Paket');
+ylabel('Membership Value');
+hold on;
+% Tambah vertikal untuk nilai
+stem(result, 1, 'r');
+hold off;
+
+% display
+set(handles.jmlPaket, 'string', num2str(result));
+
+
+% --- Executes during object creation, after setting all properties.
+function axes1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to axes1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: place code in OpeningFcn to populate axes1
+
+
+% --- Executes during object creation, after setting all properties.
+function axes2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to axes2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: place code in OpeningFcn to populate axes2
