@@ -148,14 +148,24 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-permin = str2double(get(handles.permintaan, 'string'));
-persed = str2double(get(handles.persedian, 'string'));
+permin1 = get(handles.permintaan, 'string');
+persed1 = get(handles.persedian, 'string');
+
+if isempty(permin1) && isempty(persed1)
+    errordlg('Masukan permintaan dan persedian terlebih dahulu', 'Error');
+    return;
+end
+
+permin = str2double(permin1);
+persed = str2double(persed1);
+
 
 fis = readfis('fuzzy.fis');
 
 % Debug: cek FIS apakah benar
 if isempty(fis)
-  error('FIS file not found or could not be loaded.');
+  errordlg('File FIS tidak ada, cari terlebih dahulu fis nya', 'Error');
+  return;
 end
 
 % Plot fungsi untuk Permintaan
